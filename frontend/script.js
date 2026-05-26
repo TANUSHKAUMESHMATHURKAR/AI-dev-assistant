@@ -20,19 +20,14 @@ const favContainer = document.getElementById('favContainer');
 const themeToggle = document.getElementById('themeToggle');
 const API_URL_STORAGE_KEY = 'qyverix_api_url';
 
-<<<<<<< HEAD
 const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const savedTheme = localStorage.getItem('qyverix_theme') || (systemDark ? 'dark' : 'light');
-document.documentElement.setAttribute('data-theme', savedTheme);
-=======
-// ── Theme ──
-const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const savedTheme = localStorage.getItem('qyverix_theme');
 
-const initialTheme = savedTheme || (systemDark ? 'dark' : 'light');
+const currentTheme =
+  localStorage.getItem('qyverix_theme') ||
+  (systemDark ? 'dark' : 'light');
 
-document.documentElement.setAttribute('data-theme', initialTheme);
->>>>>>> 99d38fe (fix: system theme detection + improvements)
+document.documentElement.setAttribute('data-theme', currentTheme);
+setThemeIcon(currentTheme);
 
 themeToggle.addEventListener('click', () => {
   const isLight = document.documentElement.getAttribute('data-theme') === 'light';
